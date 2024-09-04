@@ -11,11 +11,12 @@
 defined('ABSPATH') || exit;
 
 //Global Constants
-define('TCG_THEME_VERSION', '1.0.0');
+define('TCG_THEME_VERSION', '1.0.1');
 define('TCG_THEME_NAME', 'ecogreen');
 define('TCG_THEME_DEMO_URL', 'ecogreen.themescamp.com'); // used in core
-define('TCG_THEME_ID', '00');
-define('TCG_FRAMEWORK_VERSION', '2.0.1');
+define('TCG_THEME_ID', '54090698');
+define('TCG_FRAMEWORK_VERSION', '2.0.8');
+define('TCG_ELEMENTS_VERSION', '1.0.8');
 define('TCG_THEME_KEY',false);
 define('DARK_LIGHT_SUPPORT', false);
 define('TCG_THEME_DEMO_CLOUD',true);

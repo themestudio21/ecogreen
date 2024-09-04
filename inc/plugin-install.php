@@ -38,6 +38,10 @@ add_action( 'tgmpa_register', 'ecogreen_theme_register_required_plugins' );
  * TGM_Plugin_Activation class constructor.
  */
 function ecogreen_theme_register_required_plugins() {
+
+	$framework_source_url = 'https://docs.themescamp.com/plugins/ecogreen/themescamp-core-'.TCG_FRAMEWORK_VERSION.'.zip';
+	$elements_source_url = 'https://docs.themescamp.com/plugins/ecogreen/themescamp-elements-'.TCG_ELEMENTS_VERSION.'.zip';
+
 	/*
 	 * Array of plugin arrays. Required keys are name and slug.
 	 * If the source is NOT from the .org repo, then source is also required.
@@ -58,8 +62,7 @@ function ecogreen_theme_register_required_plugins() {
 		array(
 			'name'               => esc_html__( 'ThemesCamp Elements', 'ecogreen' ),
 			'slug'               => 'themescamp-elements',
-			'source'             => esc_url('https://docs.themescamp.com/plugins/ecogreen/themescamp-elements.zip' ),
-			'version'            => '1.0.0', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
+			'source'             => $elements_source_url,
 			'required'           => true,
 			'force_activation'   => false,// If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
 			'force_deactivation' => false,// If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
@@ -67,8 +70,7 @@ function ecogreen_theme_register_required_plugins() {
 		array(
 			'name'               => esc_html__( 'ThemesCamp Core', 'ecogreen' ),
 			'slug'               => 'themescamp-core',
-			'source'             => esc_url('https://docs.themescamp.com/plugins/ecogreen/themescamp-core.zip' ), 
-			'version'            => '2.0.0', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
+			'source' 			 => $framework_source_url, 
 			'required'           => true,
 			'force_activation'   => false,// If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
 			'force_deactivation' => false,// If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
@@ -88,7 +90,7 @@ function ecogreen_theme_register_required_plugins() {
 		'id'           => 'tgmpa',                 // Unique ID for hashing notices for multiple instances of TGMPA.
 		'default_path' => '',                      // Default absolute path to bundecogreen plugins.
 		'menu'         => 'tgmpa-install-plugins', // Menu slug.
-		'parent_slug'  => 'themes.php',            // Parent menu slug.
+		'parent_slug'  => 'admin.php',            // Parent menu slug.
 		'capability'   => 'edit_theme_options',    // Capability needed to view plugin install page, should be a capability associated with the parent menu used.
 		'has_notices'  => true,                    // Show admin notices or not.
 		'dismissable'  => true,                    // If false, a user cannot dismiss the nag message.
@@ -99,3 +101,17 @@ function ecogreen_theme_register_required_plugins() {
 
 	tgmpa( $plugins, $config );
 }
+
+if ( ! function_exists( 'tcg_deactivate_ocdi' ) ) {
+	function tcg_deactivate_ocdi() {
+		// Path to the plugin file
+		$plugin_file = WP_PLUGIN_DIR . '/one-click-demo-import/one-click-demo-import.php';
+
+		// Check if the plugin file exists
+		if ( file_exists( $plugin_file ) ) {
+			// Deactivate the plugin
+			deactivate_plugins( 'one-click-demo-import/one-click-demo-import.php' );
+		}
+	}
+}
+add_action( 'admin_init', 'tcg_deactivate_ocdi' );
