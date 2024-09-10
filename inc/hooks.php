@@ -57,7 +57,7 @@ function tcgs_required_plugins($plugins) {
 // Helper function to create HTML links
 function tcg_modify_link($url, $text) {
     // Ensure the translation function includes the text domain
-    return '<a href="' . esc_url($url) . '" target="_blank">' . $text. '</a>';
+    return '<a href="' . esc_url($url) . '" target="_blank">' . $text . '</a>';
 }
 
 // Add documentation, portfolio, and help links

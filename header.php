@@ -25,6 +25,15 @@ if ( class_exists('\ThemescampPlugin\ThemescampPlugin') ) {
 	
 
 	?>
+
+	<?php if (get_header_image()) : ?>
+    <div id="site-header">
+        <a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
+            <img src="<?php header_image(); ?>" width="<?php echo esc_attr(get_custom_header()->width); ?>" height="<?php echo esc_attr(get_custom_header()->height); ?>" alt="img">
+        </a>
+    </div>
+	<?php endif; ?>
+
 	<!--Default header Fallback if no options install-->
 	<div class="default-header clearfix tcg-theme">
 		<nav class="header apply-header not-custom-menu clearfix white-header shadow-header .">
@@ -32,7 +41,15 @@ if ( class_exists('\ThemescampPlugin\ThemescampPlugin') ) {
 				<div class="stuck-nav">
 					 <div class="container-fluid">
 						<div class="top-logo">
-							<p class="site-title"><a href='<?php echo esc_url( home_url( '/' ) ); ?>' rel="home"><?php bloginfo( 'name' ); ?></a></p>
+							<?php 
+								if (function_exists('the_custom_logo') && has_custom_logo()) {
+								    the_custom_logo();
+								}else{?>
+										<p class="site-title"><a href='<?php echo esc_url( home_url( '/' ) ); ?>' rel="home"><?php bloginfo( 'name' ); ?></a></p>
+									<?php
+								}
+							?>
+							
 						</div>
 						<div class="header-wrapper d-none d-md-block" > <!-- hidden-xs hidden-sm -->
 							<div class="main-menu menu-wrapper"> 

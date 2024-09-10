@@ -238,7 +238,7 @@ function ecogreen_custom_menu_page ($menu) {
 	endif;
 }
 
-//function custom header by page settings
+//function custom header by page settings 
 function ecogreen_custom_flat_menu_page ($flatmenu) {
 	global $post ;
 
@@ -251,7 +251,29 @@ function ecogreen_custom_flat_menu_page ($flatmenu) {
 	echo strip_tags(wp_nav_menu( $menuParameters_flat ), '<a>' );
 }
 
+function ecogreen_custom_logo_setup() {
+    add_theme_support('custom-logo', array(
+        'height'      => 50, // Suggested logo height
+        'width'       => 200, // Suggested logo width
+        'flex-height' => true, // Allow flexible logo height
+        'flex-width'  => true, // Allow flexible logo width
+        'header-text' => array('site-title', 'site-description'), // Elements for header text
+    ));
+}
+add_action('after_setup_theme', 'ecogreen_custom_logo_setup');
 
+function ecogreen_custom_header_setup() {
+    add_theme_support('custom-header', array(
+        'width'                  => 1200,  // Width in pixels
+        'height'                 => 400,   // Height in pixels
+        'flex-height'            => true,  // Allow flexible height
+        'flex-width'             => true,  // Allow flexible width
+        'header-text'            => true,  // Whether to display header text
+        'default-text-color'     => '000', // Default header text color
+        'uploads'                => true,  // Allow image uploads
+    ));
+}
+add_action('after_setup_theme', 'ecogreen_custom_header_setup');
 
 /*
 * Theme scripts & Styles
