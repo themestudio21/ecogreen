@@ -10,19 +10,6 @@
 
 defined('ABSPATH') || exit;
 
-//Global Constants
-define('TCG_THEME_VERSION', '1.0.1');
-define('TCG_THEME_NAME', 'ecogreen');
-define('TCG_THEME_DEMO_URL', 'ecogreen.themescamp.com'); // used in core
-define('TCG_THEME_ID', '54090698');
-define('TCG_FRAMEWORK_VERSION', '2.0.8');
-define('TCG_ELEMENTS_VERSION', '1.0.8');
-define('TCG_THEME_KEY',false);
-define('DARK_LIGHT_SUPPORT', false);
-define('TCG_THEME_DEMO_CLOUD',true);
-define('TCG_THEME_DEV_MOD',true);                      // used in core 
-
-
 add_action( 'after_setup_theme', 'ecogreen_theme_setup' );
 function ecogreen_theme_setup() {
 
@@ -282,7 +269,10 @@ include( get_template_directory().'/inc/comment-template.php');
 include( get_template_directory().'/inc/pagination.php');
 
 //include TGM activation
-include( get_template_directory().'/inc/plugin-install.php');
+include( get_template_directory().'/inc/plugin-install.php'); 
+
+//include Hooks
+include( get_template_directory().'/inc/hooks.php');
 
 
 

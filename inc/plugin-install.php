@@ -39,8 +39,7 @@ add_action( 'tgmpa_register', 'ecogreen_theme_register_required_plugins' );
  */
 function ecogreen_theme_register_required_plugins() {
 
-	$framework_source_url = 'https://docs.themescamp.com/plugins/ecogreen/themescamp-core-'.TCG_FRAMEWORK_VERSION.'.zip';
-	$elements_source_url = 'https://docs.themescamp.com/plugins/ecogreen/themescamp-elements-'.TCG_ELEMENTS_VERSION.'.zip';
+	global $framework_source_url, $elements_source_url;
 
 	/*
 	 * Array of plugin arrays. Required keys are name and slug.
@@ -76,6 +75,9 @@ function ecogreen_theme_register_required_plugins() {
 			'force_deactivation' => false,// If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
 		),
 	);
+
+    // Apply the filter to allow modification of the plugins list
+    $plugins = apply_filters( 'tcg_required_plugins', $plugins );
 
 	/*
 	 * Array of configuration settings. Amend each line as needed.
